@@ -29,6 +29,9 @@
             <button class="menu-btn indigo" onclick="showScreen('animals')">
                 🦁 Animal Sounds
             </button>
+            <button class="menu-btn" onclick="showScreen('quiz')">
+                ❓ Quiz Time
+            </button>
         </div>
         <div class="menu-icons">
             <span class="icon">⭐</span>
@@ -122,6 +125,22 @@
         <div class="nav-buttons">
             <button class="nav-btn" onclick="previousItem('animals')" id="animalPrev">← Previous</button>
             <button class="nav-btn next" onclick="nextItem('animals')" id="animalNext">Next →</button>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quizScreen" class="screen">
+        <button class="back-btn" onclick="showScreen('menu')">← Back to Menu</button>
+        <div class="score">Quiz</div>
+        <div class="learning-card" id="quizCard">
+            <div class="word-display" id="quizQuestion">Loading question...</div>
+            <div class="word-display" id="quizAnswer" style="display:none; font-weight:700;">Answer</div>
+                            <button class="say-btn orange" onclick="toggleAnswer()">Show/Hide Answer</button>
+
+            <div style="margin-top:18px; display:flex; gap:12px; justify-content:center;">
+                <button class="nav-btn" id="quizPrev" onclick="previousQA()">Previous</button>
+                <button class="nav-btn next" id="quizNext" onclick="nextQA()">Next</button>
+            </div>
         </div>
     </div>
 
