@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-       <div id="menuScreen" class="screen active">
+  <!-- Menu Screen -->
+    <div id="menuScreen" class="screen active">
         <h1 class="title">🎓 Let's Learn! 🎓</h1>
         <div class="menu-buttons">
             <button class="menu-btn" onclick="showScreen('abc')">
                 🔤 Learn ABC
             </button>
             <button class="menu-btn green" onclick="showScreen('123')">
-                🔢 Count 1-10
+                🔢 Count 1-20
             </button>
         </div>
         <div class="menu-icons">
@@ -45,7 +49,7 @@
     <div id="numberScreen" class="screen">
         <button class="back-btn" onclick="showScreen('menu')">← Back to Menu</button>
         <div class="score">Score: <span id="numberScore">0</span> ⭐</div>
-        <div class="learning-card">
+        <div class="learning-card" onclick="sayNumber()">
             <div class="number-display" id="numberDisplay">1</div>
             <div class="emoji-display" id="emojiDisplay">1️⃣</div>
             <div class="dots-container" id="dotsContainer"></div>

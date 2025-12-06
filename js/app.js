@@ -1,4 +1,4 @@
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
         const alphabetWords = {
             A: '🍎 Apple', B: '🎈 Balloon', C: '🐱 Cat', D: '🐕 Dog', E: '🐘 Elephant',
             F: '🦊 Fox', G: '🦒 Giraffe', H: '🏠 House', I: '🍦 Ice Cream', J: '🤹 Juggle',
@@ -44,9 +44,13 @@
             
             const container = document.getElementById('dotsContainer');
             container.innerHTML = '';
+            
+            // Make dots smaller when count is over 10
+            const dotClass = number > 10 ? 'dot dot-small' : 'dot';
+            
             for (let i = 0; i < number; i++) {
                 const dot = document.createElement('div');
-                dot.className = 'dot';
+                dot.className = dotClass;
                 dot.style.animationDelay = `${i * 0.1}s`;
                 container.appendChild(dot);
             }
