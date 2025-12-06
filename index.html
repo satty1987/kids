@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+       <div id="menuScreen" class="screen active">
+        <h1 class="title">🎓 Let's Learn! 🎓</h1>
+        <div class="menu-buttons">
+            <button class="menu-btn" onclick="showScreen('abc')">
+                🔤 Learn ABC
+            </button>
+            <button class="menu-btn green" onclick="showScreen('123')">
+                🔢 Count 1-10
+            </button>
+        </div>
+        <div class="menu-icons">
+            <span class="icon">⭐</span>
+            <span class="icon" style="animation-delay: 1s;">❤️</span>
+            <span class="icon" style="animation-delay: 2s;">✨</span>
+        </div>
+    </div>
+
+    <!-- ABC Screen -->
+    <div id="abcScreen" class="screen">
+        <button class="back-btn" onclick="showScreen('menu')">← Back to Menu</button>
+        <div class="score">Score: <span id="abcScore">0</span> ⭐</div>
+        <div class="learning-card">
+            <div class="letter-display" id="letterDisplay">A</div>
+            <div class="word-display" id="wordDisplay">🍎 Apple</div>
+            <button class="say-btn" onclick="sayLetter()">
+                🔊 Say it!
+            </button>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="previousItem('abc')" id="abcPrev">← Previous</button>
+            <button class="nav-btn next" onclick="nextItem('abc')" id="abcNext">Next →</button>
+        </div>
+    </div>
+
+    <!-- Number Screen -->
+    <div id="numberScreen" class="screen">
+        <button class="back-btn" onclick="showScreen('menu')">← Back to Menu</button>
+        <div class="score">Score: <span id="numberScore">0</span> ⭐</div>
+        <div class="learning-card">
+            <div class="number-display" id="numberDisplay">1</div>
+            <div class="emoji-display" id="emojiDisplay">1️⃣</div>
+            <div class="dots-container" id="dotsContainer"></div>
+            <button class="say-btn green" onclick="sayNumber()">
+                🔊 Say it!
+            </button>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="previousItem('123')" id="numPrev">← Previous</button>
+            <button class="nav-btn next" onclick="nextItem('123')" id="numNext">Next →</button>
+        </div>
+    </div>
+
+    <!-- Celebration -->
+    <div id="celebration" class="celebration">
+        <div class="celebration-emoji">🎉</div>
+    </div>
+</body>
+<script src="./js/app.js"></script>
+</html>
