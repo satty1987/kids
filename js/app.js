@@ -1,4 +1,4 @@
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
         const alphabetWords = {
             A: '🍎 Apple', B: '🎈 Balloon', C: '🐱 Cat', D: '🐕 Dog', E: '🐘 Elephant',
             F: '🦊 Fox', G: '🦒 Giraffe', H: '🏠 House', I: '🍦 Ice Cream', J: '🤹 Juggle',
@@ -7,11 +7,50 @@
             U: '☂️ Umbrella', V: '🎻 Violin', W: '🐋 Whale', X: '❌ X-ray', Y: '🧶 Yarn', Z: '🦓 Zebra'
         };
         const numberEmojis = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟', '1️⃣1️⃣', '1️⃣2️⃣', '1️⃣3️⃣', '1️⃣4️⃣', '1️⃣5️⃣', '1️⃣6️⃣', '1️⃣7️⃣', '1️⃣8️⃣', '1️⃣9️⃣', '2️⃣0️⃣'];
+        
+        const colors = [
+            { name: 'Red', hex: '#ef4444', emoji: '🔴' },
+            { name: 'Blue', hex: '#3b82f6', emoji: '🔵' },
+            { name: 'Green', hex: '#10b981', emoji: '🟢' },
+            { name: 'Yellow', hex: '#fbbf24', emoji: '🟡' },
+            { name: 'Orange', hex: '#f97316', emoji: '🟠' },
+            { name: 'Purple', hex: '#a855f7', emoji: '🟣' },
+            { name: 'Pink', hex: '#ec4899', emoji: '🌸' },
+            { name: 'Brown', hex: '#92400e', emoji: '🟤' },
+            { name: 'Black', hex: '#1f2937', emoji: '⚫' },
+            { name: 'White', hex: '#f9fafb', emoji: '⚪' }
+        ];
+
+        const shapes = [
+            { name: 'Circle', class: 'shape-circle' },
+            { name: 'Square', class: 'shape-square' },
+            { name: 'Triangle', class: 'shape-triangle' },
+            { name: 'Star', class: 'shape-star', emoji: '⭐' },
+            { name: 'Heart', class: 'shape-heart', emoji: '❤️' }
+        ];
+
+        const animals = [
+            { name: 'Dog', emoji: '🐶', sound: 'Woof woof!' },
+            { name: 'Cat', emoji: '🐱', sound: 'Meow meow!' },
+            { name: 'Cow', emoji: '🐮', sound: 'Moo moo!' },
+            { name: 'Sheep', emoji: '🐑', sound: 'Baa baa!' },
+            { name: 'Duck', emoji: '🦆', sound: 'Quack quack!' },
+            { name: 'Lion', emoji: '🦁', sound: 'Roar!' },
+            { name: 'Elephant', emoji: '🐘', sound: 'Trumpet!' },
+            { name: 'Monkey', emoji: '🐵', sound: 'Ooh ooh ah ah!' },
+            { name: 'Bird', emoji: '🐦', sound: 'Tweet tweet!' },
+            { name: 'Frog', emoji: '🐸', sound: 'Ribbit ribbit!' }
+        ];
 
         let currentMode = 'menu';
         let currentIndex = 0;
-        let abcScore = 0;
-        let numberScore = 0;
+        let scores = {
+            abc: 0,
+            number: 0,
+            colors: 0,
+            shapes: 0,
+            animals: 0
+        };
 
         function showScreen(mode) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -26,6 +65,15 @@
             } else if (mode === '123') {
                 document.getElementById('numberScreen').classList.add('active');
                 updateNumber();
+            } else if (mode === 'colors') {
+                document.getElementById('colorsScreen').classList.add('active');
+                updateColor();
+            } else if (mode === 'shapes') {
+                document.getElementById('shapesScreen').classList.add('active');
+                updateShape();
+            } else if (mode === 'animals') {
+                document.getElementById('animalsScreen').classList.add('active');
+                updateAnimal();
             }
         }
 
@@ -45,7 +93,6 @@
             const container = document.getElementById('dotsContainer');
             container.innerHTML = '';
             
-            // Make dots smaller when count is over 10
             const dotClass = number > 10 ? 'dot dot-small' : 'dot';
             
             for (let i = 0; i < number; i++) {
@@ -59,21 +106,73 @@
             document.getElementById('numNext').disabled = currentIndex === 19;
         }
 
+        function updateColor() {
+            const color = colors[currentIndex];
+            document.getElementById('colorName').textContent = color.emoji + ' ' + color.name;
+            document.getElementById('colorBox').style.background = color.hex;
+            document.getElementById('colorPrev').disabled = currentIndex === 0;
+            document.getElementById('colorNext').disabled = currentIndex === colors.length - 1;
+        }
+
+        function updateShape() {
+            const shape = shapes[currentIndex];
+            document.getElementById('shapeName').textContent = shape.name;
+            const container = document.getElementById('shapeContainer');
+            container.innerHTML = '';
+            
+            if (shape.emoji) {
+                const shapeDiv = document.createElement('div');
+                shapeDiv.className = `shape ${shape.class}`;
+                shapeDiv.textContent = shape.emoji;
+                container.appendChild(shapeDiv);
+            } else {
+                const shapeDiv = document.createElement('div');
+                shapeDiv.className = `shape ${shape.class}`;
+                container.appendChild(shapeDiv);
+            }
+            
+            document.getElementById('shapePrev').disabled = currentIndex === 0;
+            document.getElementById('shapeNext').disabled = currentIndex === shapes.length - 1;
+        }
+
+        function updateAnimal() {
+            const animal = animals[currentIndex];
+            document.getElementById('animalEmoji').textContent = animal.emoji;
+            document.getElementById('animalName').textContent = animal.name;
+            document.getElementById('animalPrev').disabled = currentIndex === 0;
+            document.getElementById('animalNext').disabled = currentIndex === animals.length - 1;
+        }
+
         function previousItem(mode) {
             if (currentIndex > 0) {
                 currentIndex--;
-                if (mode === 'abc') updateABC();
-                else updateNumber();
+                updateCurrentScreen(mode);
             }
         }
 
         function nextItem(mode) {
-            const maxIndex = mode === 'abc' ? alphabet.length - 1 : 19;
+            const maxIndex = getMaxIndex(mode);
             if (currentIndex < maxIndex) {
                 currentIndex++;
-                if (mode === 'abc') updateABC();
-                else updateNumber();
+                updateCurrentScreen(mode);
             }
+        }
+
+        function getMaxIndex(mode) {
+            if (mode === 'abc') return alphabet.length - 1;
+            if (mode === '123') return 19;
+            if (mode === 'colors') return colors.length - 1;
+            if (mode === 'shapes') return shapes.length - 1;
+            if (mode === 'animals') return animals.length - 1;
+            return 0;
+        }
+
+        function updateCurrentScreen(mode) {
+            if (mode === 'abc') updateABC();
+            else if (mode === '123') updateNumber();
+            else if (mode === 'colors') updateColor();
+            else if (mode === 'shapes') updateShape();
+            else if (mode === 'animals') updateAnimal();
         }
 
         function sayLetter() {
@@ -86,7 +185,25 @@
         function sayNumber() {
             const number = currentIndex + 1;
             speak(`${number}`);
-            celebrate('123');
+            celebrate('number');
+        }
+
+        function sayColor() {
+            const color = colors[currentIndex];
+            speak(color.name);
+            celebrate('colors');
+        }
+
+        function sayShape() {
+            const shape = shapes[currentIndex];
+            speak(shape.name);
+            celebrate('shapes');
+        }
+
+        function sayAnimal() {
+            const animal = animals[currentIndex];
+            speak(`${animal.name} says ${animal.sound}`);
+            celebrate('animals');
         }
 
         function speak(text) {
@@ -97,18 +214,16 @@
         }
 
         function celebrate(mode) {
-            if (mode === 'abc') {
-                abcScore++;
-                document.getElementById('abcScore').textContent = abcScore;
-            } else {
-                numberScore++;
-                document.getElementById('numberScore').textContent = numberScore;
-            }
+            scores[mode]++;
+            const scoreId = mode === 'abc' ? 'abcScore' : 
+                           mode === 'number' ? 'numberScore' :
+                           mode === 'colors' ? 'colorsScore' :
+                           mode === 'shapes' ? 'shapesScore' : 'animalsScore';
+            document.getElementById(scoreId).textContent = scores[mode];
 
             const celebration = document.getElementById('celebration');
             celebration.classList.add('active');
 
-            // Create floating stars
             for (let i = 0; i < 12; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';

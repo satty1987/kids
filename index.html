@@ -10,15 +10,24 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <!-- Menu Screen -->
+      <!-- Menu Screen -->
     <div id="menuScreen" class="screen active">
-        <h1 class="title">🎓 Let's Learn! 🎓</h1>
-        <div class="menu-buttons">
+        <h1 class="title">🎓 Kids Learning Hub 🎓</h1>
+        <div class="menu-grid">
             <button class="menu-btn" onclick="showScreen('abc')">
                 🔤 Learn ABC
             </button>
             <button class="menu-btn green" onclick="showScreen('123')">
                 🔢 Count 1-20
+            </button>
+            <button class="menu-btn orange" onclick="showScreen('colors')">
+                🎨 Learn Colors
+            </button>
+            <button class="menu-btn pink" onclick="showScreen('shapes')">
+                ⭐ Learn Shapes
+            </button>
+            <button class="menu-btn indigo" onclick="showScreen('animals')">
+                🦁 Animal Sounds
             </button>
         </div>
         <div class="menu-icons">
@@ -49,7 +58,7 @@
     <div id="numberScreen" class="screen">
         <button class="back-btn" onclick="showScreen('menu')">← Back to Menu</button>
         <div class="score">Score: <span id="numberScore">0</span> ⭐</div>
-        <div class="learning-card" onclick="sayNumber()">
+        <div class="learning-card">
             <div class="number-display" id="numberDisplay">1</div>
             <div class="emoji-display" id="emojiDisplay">1️⃣</div>
             <div class="dots-container" id="dotsContainer"></div>
@@ -63,10 +72,65 @@
         </div>
     </div>
 
+    <!-- Colors Screen -->
+    <div id="colorsScreen" class="screen">
+        <button class="back-btn" onclick="showScreen('menu')">← Back to Menu</button>
+        <div class="score">Score: <span id="colorsScore">0</span> ⭐</div>
+        <div class="learning-card">
+            <div class="word-display" id="colorName">Red</div>
+            <div class="color-box" id="colorBox" style="background: #ef4444;"></div>
+            <button class="say-btn orange" onclick="sayColor()">
+                🔊 Say it!
+            </button>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="previousItem('colors')" id="colorPrev">← Previous</button>
+            <button class="nav-btn next" onclick="nextItem('colors')" id="colorNext">Next →</button>
+        </div>
+    </div>
+
+    <!-- Shapes Screen -->
+    <div id="shapesScreen" class="screen">
+        <button class="back-btn" onclick="showScreen('menu')">← Back to Menu</button>
+        <div class="score">Score: <span id="shapesScore">0</span> ⭐</div>
+        <div class="learning-card">
+            <div class="word-display" id="shapeName">Circle</div>
+            <div class="shape-container" id="shapeContainer">
+                <div class="shape shape-circle"></div>
+            </div>
+            <button class="say-btn indigo" onclick="sayShape()">
+                🔊 Say it!
+            </button>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="previousItem('shapes')" id="shapePrev">← Previous</button>
+            <button class="nav-btn next" onclick="nextItem('shapes')" id="shapeNext">Next →</button>
+        </div>
+    </div>
+
+    <!-- Animals Screen -->
+    <div id="animalsScreen" class="screen">
+        <button class="back-btn" onclick="showScreen('menu')">← Back to Menu</button>
+        <div class="score">Score: <span id="animalsScore">0</span> ⭐</div>
+        <div class="learning-card">
+            <div class="emoji-display" id="animalEmoji">🐶</div>
+            <div class="word-display" id="animalName">Dog</div>
+            <button class="say-btn green" onclick="sayAnimal()">
+                🔊 Hear the sound!
+            </button>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="previousItem('animals')" id="animalPrev">← Previous</button>
+            <button class="nav-btn next" onclick="nextItem('animals')" id="animalNext">Next →</button>
+        </div>
+    </div>
+
     <!-- Celebration -->
     <div id="celebration" class="celebration">
         <div class="celebration-emoji">🎉</div>
     </div>
+
+
 </body>
 <script src="./js/app.js"></script>
 </html>
